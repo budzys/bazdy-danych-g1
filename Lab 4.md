@@ -49,7 +49,7 @@ insert into walizka values(70, 3);
 
 1.
 ```sql
-create table izba (
+create table izba(
 adres_budynku VARCHAR(100) PRIMARY KEY,
 nazwa_izby VARCHAR(100) PRIMARY KEY,
 metraz INT UNSIGNED,
@@ -67,8 +67,77 @@ alter table izba add column kolor VARCHAR(20) default 'czarny' after metraz;
 insert into izba values('marcowa 8', 'spizarnia', 40, 1,); 
 ```
 
- 
- 
- 
- 
- 
+### Zadanie 4
+
+1.
+```sql
+create table przetwory(
+id_przetworu int primary key auto_increment,
+rok_produkcji int default 1654,
+id_wykonawcy int,
+foreign key (id_wykonawcy) references postac(id_postaci),
+zawartosc varchar(50),
+dodatek varchar(60) default 'papryczka chilli',
+id_konsumenta int,
+foreign key (id_konsumenta) references postac(id_postaci)
+);
+```
+UWAGA! Operowanie tabelą może być na kolokwium. Przydatna komenda show create table nazwa_tabeli
+
+2.
+```sql
+insert into przetwory values(default,default,3,'bigos z papryczką chilli', default, 1);
+```
+
+### Zadanie 5
+
+1.
+```sql
+insert into postac values(default, 'Ragnar', 'wiking', '1700-01-11', 50);
+insert into postac values(default, 'Ubbe', 'wiking', '1800-01-13', 35);
+insert into postac values(default, 'Ivar', 'wiking', '1810-04-12', 30);
+insert into postac values(default, 'Sigurd', 'wiking', '1840-10-15', 31);
+insert into postac values(default, 'Floki', 'wiking', '1650-09-04', 40);
+```
+2. 
+```sql
+create table statek(
+nazwa_statku int primary key auto_increment,
+rodzaj_statku enum('drakar', 'transportowiec','rybacka'),
+data_wodowania date,
+max_ladownosc int unsigned
+);
+```
+3.
+```sql
+insert into statek values(default, 'drakar', '1600-05-20', 50);
+insert into statek values(default, 'rybacka', '1600-05-20', 50);
+```
+4.
+```sql
+alter table postac add column pola enum('laka', 'gory') after wiek;
+```
+
+5.
+```sql
+update postac set rodzaj = 'kapitan' where id_postaci = 1;
+```
+6.
+```sql
+alter table postac add column statek int;
+alter table postac add foreign key(statek) references statek(nazwa_statku);
+```
+7.
+```sql
+update postac set statek = 1 where nazwa = 'Bjorn';
+update postac set statek = 2 where nazwa = 'Floki';
+```
+
+8.
+```sql
+delete from izba where nazwa_izby = 'spizarnia';
+```
+9.
+```sql
+drop table izba;
+```
