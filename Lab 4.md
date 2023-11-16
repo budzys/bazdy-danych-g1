@@ -64,7 +64,7 @@ alter table izba add column kolor VARCHAR(20) default 'czarny' after metraz;
 
 3.
 ```sql
-update table izba values('marcowa 8', 'spizarnia', 40, 1,); 
+insert into izba values('marcowa 8', 'spizarnia', 40, 1,); 
 ```
 
  
