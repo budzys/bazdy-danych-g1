@@ -3,21 +3,21 @@
 ### Zadanie 1 
 
 1.
-'''sql
+```sql
 CREATE TABLE postac(
 id_postaci INT primary key AUTO_INCREMENT,
 nazwa VARCHAR(40),
 rodzaj ENUM('wiking', 'ptak', 'kobieta'),
 data_ur DATE,
 wiek INT UNSIGNED);
-'''
+```
 
 1.
-'''sql
+```sql
 INSERT INTO postac values(default, 'Bjorn', 'wiking', 1700-02-02, 45);
 INSERT INTO postac VALUES(DEFAULT, 'Drozd', 'ptak', 2010-10-05, 13);
 insert into postac values(default, 'Tesciowa', 'kobieta', 1650-02-12, 70);
-'''
+```
 1. 
 update postac set wiek = 88 where id = 3; 
 
