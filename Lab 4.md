@@ -41,7 +41,7 @@ alter table walizka kolor set default 'rozowy';
 
 3.
 ```sql
-INSERT into walizka values(default, 40, default);
+INSERT into walizka values(default, 40, default, 1);
 insert into walizka values(70, 3);
 ```
 
