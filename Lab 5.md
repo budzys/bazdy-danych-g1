@@ -101,16 +101,11 @@ alter table marnarz add foreign key(statek) references(statek)
 
 ### Zadanie 5
 
-alter table postac set s
-
-update 1
-2 usunac rekord
-3 z
-
 1.
 ```sql
 update postac set statek=null;
 ```
+
 2.
 ```sql
 delete from postac where nazwa='Ragnar';
@@ -121,3 +116,24 @@ delete from postac where nazwa='Ragnar';
 delete from statek where nazwa_statku = 1
 ```
 
+4.
+```sql
+show create table postac;
+alter table postac drop foreign key postac_ibfk_;
+drop table statek;
+```
+
+5.
+```sql
+CREATE TABLE zwierz (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nazwa VARCHAR(100),
+    wiek INT
+);
+```
+
+6.
+```sql
+insert into zwierz (nazwa, wiek)
+select Drozd, wiek from postac;
+```
