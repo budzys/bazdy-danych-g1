@@ -64,18 +64,20 @@ SELECT * FROM kreatura ORDER BY dataUr DESC LIMIT 5;
 
 1.
 ```sql 
-select distinct rodzaj from kreatura;
+select distinct rodzaj from zasob;
 #lub
-select distinct (rodzaj) from kreatura;
+select distinct (rodzaj) from zasob;
 ```
+
 2.
 ```sql
-select concat(nazwa, ' to id=', idKreatury) from kreatura;
+select concat(nazwa, ' to id=', idKreatury) from kreatura where rodzaj like 'wi%;
 ```
 
 3.
 ```sql
-SELECT * FROM kreatura ORDER BY dataUr DESC LIMIT 5;
+SELECT nazwa, (ilosc*waga) as calkowitaWaga
+from zasob where year (dataPozyskania) between 2000 and 2007;
 ```
 
 # Zadanie 5
