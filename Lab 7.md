@@ -77,7 +77,7 @@ where idKreatury is not null);
 
 1.
 ```sql
-# select * from kreatura natural join ekwipunek;
+# select * from kreatura natural join ekwipunek; - nie najlepsze opcja
 select k.nazwa z.nazwa from kreatura k
 join ekwipunek e on k.idKreatury=e.idKreatury
 join zasob z on e.idZasobu=z.idZasobu
@@ -95,30 +95,31 @@ order by k.dataUr desc limit 5;
 
 3.
 ```sql
-
+select concat(k1.nazwa, ' - ', k2.nazwa)
+FROM kreatura k1
+inner join kreatura k2 on k1.idKreatury - k2.idKreatury = 5;
 ```
 
 
+# Zadanie 5
 
+1.
+```sql
+select k.rodzaj, avg (e.ilosc * z.waga)
+from kreatura k
+inner join ekwipunek e on k.idKreatury=e.idKreatury
+inner join zasob z on e.idZasobu=z.idZasobu
+where k.rodzaj not in ('malpa', 'waz') and 
+e.ilosc < 30 group by k.rodzaj;
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+2.
+```sql
+select n.najstarsza, n.najmlodsza from
+(select rodzaj, min(dataUr) najstarsza, 
+max(dataUr) najmlodsza from kreatura
+group by rodzaj) n,  kreatura k 
+where n.najstarsza=k.dataUr 
+or n.najmlodsza=k.dataUr;
+# jest jeszcze druga opcja (przy uzyciu union), ktora bedzie wrzucona na repozytorium 
+```
