@@ -81,7 +81,7 @@ where idKreatury is not null);
 zasobów, które posiadają (użyj natural joina jeśli się da).
 ```sql
 # select * from kreatura natural join ekwipunek; - nie najlepsze opcja
-select k.nazwa z.nazwa from kreatura k
+select k.nazwa, z.nazwa from kreatura k
 join ekwipunek e on k.idKreatury=e.idKreatury
 join zasob z on e.idZasobu=z.idZasobu
 where year(dataUr) between 1600 and 1699;
