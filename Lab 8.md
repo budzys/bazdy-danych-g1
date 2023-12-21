@@ -37,14 +37,64 @@ group by rodzaj;
 
 2.
 ```sql
-select w.nazwa, w.data_rozpoczecia,
-e.kolejnosc, s.nazwa, k.nazwa
-from etapy e
-inner join wyprawa w on e.id_wyprawy = w.id_wyprawy
-inner join sektor s on e.idSektora = s.id_sektora
+select w.data_rozpoczecia, ew.sektor
+,ew.kolejnosc, s.nazwa, k.nazwa, w.id_wyprawy
+from etapy_wyprawy ew
+inner join wyprawa w on w.id_wyprawy = ew.idWyprawy
+inner join sektor s on ew.sektor = s.id_sektora
 inner join kreatura k on w.kierownik = k.idKreatury
-order by data_rozpoczecia, kolejnosc;
+order by w.data_rozpoczecia, ew.kolejnosc;
 ```
+
+# Zadanie 3
+
+1.
+```sql
+select s.nazwa, count(ew.sektor) from sektor s
+left join etapy_wyprawy ew on s.id_sektora=ew.sektor
+group by s.nazwa;
+```
+
+2.
+```sql
+select k.nazwa, 
+if (count(u.id_uczestnika)>0, 'brał udział', 'nie brał udziału') 
+from uczestnicy u 
+right join kreatura k on k.idKreatury=u.id_uczestnika
+group by k.nazwa;
+```
+
+# Zadanie 4
+
+1.
+```sql
+select nazwa, length(nazwa) from kreatura;
+```
+
+2. 
+```sql
+select w.nazwa, u.id_uczestnika, e.ilosc, z.waga, 
+sum(e.ilosc * z.waga) / count(distinct u.id_uczestnika)
+from uczestnicy u
+inner join wyprawa w on u.id_wyprawy=w.id_wyprawy
+inner join ekwipunek e on u.id_uczestnika=e.idKreatury
+inner join zasob z on e.idZasobu=z.idZasobu
+group by w.id_wyprawy;
+```
+
+# Zadanie 5
+```sql
+select k.nazwa, datediff (w.data_rozpoczecia, k.dataUr) as wiek_w_dniach
+from kreatura k 
+inner join uczestnicy u on u.id_uczestnika=k.idKreatury
+inner join wyprawa w on u.id_wyprawy=w.id_wyprawy
+inner join etapy_wyprawy ew on ew.idWyprawy=w.id_wyprawy
+where ew.sektor=7 group by w.id_wyprawy, k.idKreatury;
+```
+
+
+
+
 
 
 
