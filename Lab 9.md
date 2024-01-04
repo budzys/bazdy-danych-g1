@@ -1,9 +1,9 @@
 # Zadanie 1
 
 Przydatne:
-show triggers;
-show create trigger nazwa;
-drop trigger nazwa;
+show triggers; //
+show create trigger nazwa; //
+drop trigger nazwa; //
 
 
 delimiter // deklaracja zmieniająca na określony czas, specjalnego znaku, 
