@@ -1,16 +1,16 @@
 # Zadanie 1
 
 Przydatne:
-show triggers; //
-show create trigger nazwa; //
-drop trigger nazwa; //
+* show triggers; 
+* show create trigger nazwa; 
+* drop trigger nazwa; 
 
 
-delimiter // deklaracja zmieniająca na określony czas, specjalnego znaku, 
+* delimiter // deklaracja zmieniająca na określony czas, specjalnego znaku, 
 który powoduje wykonanie określonych instrukcji w ramach interpretera mySQL
 
-new -> insert.update
-old -> update, delete 
+* new -> insert, update
+* old -> update, delete 
 
 1.
 ```sql
